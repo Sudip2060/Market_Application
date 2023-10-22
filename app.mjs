@@ -1,10 +1,18 @@
 import express from 'express';
 import {connectToDatabase} from './Database/connection.mjs'; 
-import bodyParser from 'body-parser';
-const app = express();
-import { getallproducts } from './Controllers/productController.mjs';
+import { 
+  addnewproduct, 
+  getallproducts, 
+  updateproductbyid, 
+  deleteproductbyID, 
+  deleteallproduct,
+  getproductbyid, 
+} from './Controllers/productController.mjs';
 
-//This function tries to connect to the Database
+const app = express();
+app.use(express.json());
+
+//Function to connect to the Database
 connectToDatabase()
   .then(() => {
     console.log('Connected to MongoDB...');
@@ -22,8 +30,13 @@ app.listen(5000, () => {
     console.log('Server is running... http://localhost:5000');
 });
 
-//This method calls getallproducts function which retrieves all the data from the database and displays 
+//All the methods 
 app.get('/api/products',getallproducts)
+app.get('/api/products/:id',getproductbyid)
+app.post('/api/products',addnewproduct)
+app.put('/api/products/:id',updateproductbyid)
+app.delete('/api/products/:id',deleteproductbyID)
+app.delete('/api/products',deleteallproduct)
 
 
 
