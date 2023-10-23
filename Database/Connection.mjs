@@ -1,6 +1,6 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
-const URI ='mongodb+srv://admin:q6uvpy6UchuxkPYv@admin.bby89at.mongodb.net/Marketplace?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://admin:q6uvpy6UchuxkPYv@admin.bby89at.mongodb.net/Marketplace?retryWrites=true&w=majority';
 
 async function connectToDatabase() {
         return mongoose.connect(URI, {
@@ -8,4 +8,4 @@ async function connectToDatabase() {
                 useUnifiedTopology: true,
         })
 }
-export {connectToDatabase};
+export { connectToDatabase };
